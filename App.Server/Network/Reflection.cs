@@ -153,6 +153,7 @@ namespace App.Server.Network
                         result = msg.Split('\\');
                         var className = result[0];
                         var methodName = result[1];
+
                         var myType = Assembly.GetAssembly(typeof(UserService)).GetTypes()
                         .FirstOrDefault(a => a.FullName.Contains(className));
 
@@ -186,6 +187,7 @@ namespace App.Server.Network
                     Console.WriteLine(ex.Message);
                 }
             }
+
             else if (msg.ToLower() == "exit")
             {
                 // Always Shutdown before closing
@@ -195,6 +197,7 @@ namespace App.Server.Network
                 Console.WriteLine("Client disconnected");
                 return;
             }
+
             else
             {
                 Console.WriteLine("Query is an invalid request");
