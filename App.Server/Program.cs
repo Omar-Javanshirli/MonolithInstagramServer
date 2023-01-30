@@ -1,5 +1,6 @@
 ﻿using App.Business.Concrete;
 using App.DataAccess.Concrete.EfEntityFramework;
+using App.Server.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,7 @@ namespace App.Server
     {
         static void Main(string[] args)
         {
-            var userService=new UserService(new UserDal());
-            var users = userService.GetAllAsync();
+            Reflection.Start();
         }
     }
 }

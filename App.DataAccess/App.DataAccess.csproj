@@ -85,6 +85,11 @@
     <Compile Include="Concrete\EfEntityFramework\PostLikeDal.cs" />
     <Compile Include="Concrete\EfEntityFramework\SavedPostDal.cs" />
     <Compile Include="Concrete\EfEntityFramework\UserDal.cs" />
+    <Compile Include="Migrations\202301301131088_InitialCreate.cs" />
+    <Compile Include="Migrations\202301301131088_InitialCreate.designer.cs">
+      <DependentUpon>202301301131088_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +105,11 @@
       <Project>{D92AB094-DA5D-40D9-8327-1EC3FCDD2B59}</Project>
       <Name>App.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202301301131088_InitialCreate.resx">
+      <DependentUpon>202301301131088_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

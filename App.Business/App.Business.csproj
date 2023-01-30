@@ -54,9 +54,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IUserService.cs" />
-    <Compile Include="Concrete\UserService.cs" />
+    <Compile Include="Service\Abstract\IUserService.cs" />
+    <Compile Include="Service\Concrete\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\InstagramApiService\ApiEntity\CommentApi.cs" />
+    <Compile Include="Service\InstagramApiService\ApiEntity\FollowerApi.cs" />
+    <Compile Include="Service\InstagramApiService\ApiEntity\LikerApi.cs" />
+    <Compile Include="Service\InstagramApiService\ApiEntity\UserApi.cs" />
+    <Compile Include="Service\InstagramApiService\InstagramRapidApiService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

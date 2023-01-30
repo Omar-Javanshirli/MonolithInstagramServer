@@ -30,7 +30,7 @@ namespace App.DataAccess.Concrete.EfEntityFramework
         public InstagramContext()
             : base("InstagramDB")
         {
-            
+
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
