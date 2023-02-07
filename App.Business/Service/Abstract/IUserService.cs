@@ -18,5 +18,7 @@ namespace App.Business.Abstract
         Task UpdateAsync(User user);
 
         Task DeleteAsync(User user);
+
+        Task<User> CheckUserAsync(string username);
     }
 }

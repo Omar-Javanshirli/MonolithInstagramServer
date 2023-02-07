@@ -154,7 +154,7 @@ namespace App.Server.Network
                         var className = result[0];
                         var methodName = result[1];
                         var myType = Assembly.GetAssembly(typeof(UserService)).GetTypes()
-                        .FirstOrDefault(a => a.FullName.Contains(className));
+                        .FirstOrDefault(a => a.FullName.Contains(className+"Service"));
 
                         var methods = myType.GetMethods();
                         MethodInfo myMethod = myType.GetMethods()
@@ -162,13 +162,12 @@ namespace App.Server.Network
 
                         object myInstance = Activator.CreateInstance(myType);
 
-
-                        var paramId = -1;
+                        dynamic paramId = -1;
                         var jsonString = String.Empty;
                         object objectResponse = null;
                         if (result.Length == 3)
                         {
-                            paramId = int.Parse(result[2]);
+                            paramId = result[2];
                             objectResponse = myMethod.Invoke(myInstance, new object[1] { paramId });
                         }
                         else

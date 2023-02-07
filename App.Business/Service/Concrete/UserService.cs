@@ -1,5 +1,6 @@
 ﻿using App.Business.Abstract;
 using App.DataAccess.Abstract;
+using App.DataAccess.Concrete.EfEntityFramework;
 using App.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,20 @@ namespace App.Business.Concrete
             _userDal = userDal;
         }
 
+        public UserService()
+        {
+            _userDal = new UserDal();
+        }
         public async Task AddAsync(User user)
         {
             await _userDal.AddAsync(user);
+        }
+
+        public async Task<User> CheckUserAsync(string username)
+        {
+            var users = await _userDal.GetAllAsync();
+            var user = users.FirstOrDefault();
+            return user;
         }
 
         public async Task DeleteAsync(User user)
@@ -35,7 +47,7 @@ namespace App.Business.Concrete
 
         public async Task<List<User>> GetByUserAsync(int userId)
         {
-            return await  _userDal.GetAllAsync(u => u.UserId == userId.ToString());
+            return await _userDal.GetAllAsync(u => u.UserId == userId.ToString());
         }
 
         public async Task UpdateAsync(User user)
