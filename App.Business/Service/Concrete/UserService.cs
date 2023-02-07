@@ -32,6 +32,7 @@ namespace App.Business.Concrete
         {
             var users = await _userDal.GetAllAsync();
             var user = users.FirstOrDefault();
+
             return user;
         }
 
