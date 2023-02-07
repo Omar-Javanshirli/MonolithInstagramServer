@@ -22,6 +22,7 @@ namespace App.Core.DataAccess.EntityFramework
                 addedEntity.State = EntityState.Added;
                 await context.SaveChangesAsync();
             }
+         
         }
 
         public async Task DeleteAsync(TEntity entity)

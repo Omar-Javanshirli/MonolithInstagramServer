@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Business.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ namespace App.Server.Network
 {
     public class NetworkProtocol
     {
-        public const string IPAddress = "192.168.1.106";
-        public const int TcpPort = 81;
+        public const string IPAddress = "192.168.1.105";
+        public const int TcpPort = 80;
+      
     }
 }

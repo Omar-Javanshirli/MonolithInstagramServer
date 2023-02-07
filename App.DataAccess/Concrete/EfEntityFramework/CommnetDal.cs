@@ -11,5 +11,6 @@ namespace App.DataAccess.Concrete.EfEntityFramework
 {
     public class CommnetDal : EfEntityRepositoryBase<Comment, InstagramContext>, ICommentDal
     {
+      
     }
 }

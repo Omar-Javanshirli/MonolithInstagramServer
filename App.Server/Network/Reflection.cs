@@ -16,7 +16,7 @@ namespace App.Server.Network
     {
         private static readonly Socket serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         private static readonly List<Socket> clientSockets = new List<Socket>();
-        private const int BUFFER_SIZE = 2048;
+        private const int BUFFER_SIZE = 4096;
         private static readonly byte[] buffer = new byte[BUFFER_SIZE];
 
         static public void Start()
@@ -119,6 +119,23 @@ namespace App.Server.Network
             string msg = Encoding.ASCII.GetString(recBuf);
             Console.WriteLine("Received Text: " + msg);
 
+            SendData(msg, current);
+            current.BeginReceive(buffer, 0, BUFFER_SIZE, SocketFlags.None, ReceiveCallback, current);
+        }
+
+        private static void CloseAllSockets()
+        {
+            foreach (Socket socket in clientSockets)
+            {
+                socket.Shutdown(SocketShutdown.Both);
+                socket.Close();
+            }
+
+            serverSocket.Close();
+        }
+
+        private static void SendData(string msg, Socket current)
+        {
             if (msg != String.Empty)
             {
                 try
@@ -131,6 +148,7 @@ namespace App.Server.Network
                         var subResult = result[0].Split('\\');
                         var className = subResult[0];
                         var methodName = subResult[1];
+
                         var myType = Assembly.GetAssembly(typeof(UserService)).GetTypes()
                         .FirstOrDefault(a => a.FullName.Contains(className));
 
@@ -155,7 +173,7 @@ namespace App.Server.Network
                         var methodName = result[1];
 
                         var myType = Assembly.GetAssembly(typeof(UserService)).GetTypes()
-                        .FirstOrDefault(a => a.FullName.Contains(className+"Service"));
+                        .FirstOrDefault(a => a.FullName.Contains(className + "Service"));
 
                         var methods = myType.GetMethods();
                         MethodInfo myMethod = myType.GetMethods()
@@ -204,19 +222,6 @@ namespace App.Server.Network
                 current.Send(data);
                 Console.WriteLine("Warning Sent");
             }
-
-            current.BeginReceive(buffer, 0, BUFFER_SIZE, SocketFlags.None, ReceiveCallback, current);
-        }
-
-        private static void CloseAllSockets()
-        {
-            foreach (Socket socket in clientSockets)
-            {
-                socket.Shutdown(SocketShutdown.Both);
-                socket.Close();
-            }
-
-            serverSocket.Close();
         }
     }
 }

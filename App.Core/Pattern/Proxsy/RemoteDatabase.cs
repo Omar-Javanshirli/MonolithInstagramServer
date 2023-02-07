@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Core.Entities
+namespace App.Core.Pattern.Proxsy
 {
-    public interface IEntity
+    public class RemoteDatabase : ICache
     {
-       
+          
     }
 }
