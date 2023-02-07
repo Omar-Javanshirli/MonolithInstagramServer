@@ -104,6 +104,7 @@ namespace App.Business.Service.InstagramApiService
                     { "X-RapidAPI-Host", "instagram-profile1.p.rapidapi.com" },
                 },
             };
+
             using (var response = await client.SendAsync(request))
             {
                 response.EnsureSuccessStatusCode();
